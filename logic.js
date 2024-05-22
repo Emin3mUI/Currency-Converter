@@ -1,29 +1,31 @@
-function formatCurrency(){
+async function convertCurrency() {
     const amount = document.getElementById('amount').value;
-    const currency = document.getElementById('currency').value;
-    let formattedAmount;
-    
-    if (amount === ''){
+    const fromCurrency = document.getElementById('fromCurrency').value;
+    const toCurrency = document.getElementById('toCurrency').value;
+
+    if (amount === '') {
         alert('Please enter an amount');
         return;
     }
 
-    switch(currency){
-        case 'USD':
-            formattedAmount = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(amount);
-            break;
-        case 'EUR':
-            formattedAmount = new Intl.NumberFormat('en-DE', {style: 'currency', currency: 'EUR'}).format(amount);
-            break;
-        case 'CAD':
-            formattedAmount = new Intl.NumberFormat('en-CA', {style: 'currency', currency: 'CAD'}).format(amount);
-            break;
-        case 'JPY':
-            formattedAmount = new Intl.NumberFormat('en-JP', {style: 'currency', currency: 'JPY'}).format(amount);
-            break;
-        default:
-            formattedAmount = amount;
+    try {
+        const apiKey = 'YOUR_API_KEY'; // Replace with your actual API key
+        const response = await fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/latest/${fromCurrency}`);
+        const data = await response.json();
 
+        if (data.result === "error") {
+            throw new Error(data['error-type']);
+        }
+
+        const exchangeRate = data.conversion_rates[toCurrency];
+        const convertedAmount = amount * exchangeRate;
+
+        document.getElementById('output').textContent = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: toCurrency
+        }).format(convertedAmount);
+    } catch (error) {
+        console.error('Error fetching the exchange rates:', error);
+        alert('Error fetching the exchange rates. Please try again later.');
     }
-    document.getElementById('output').textContent = formattedAmount;
 }

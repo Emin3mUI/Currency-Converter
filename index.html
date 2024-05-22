@@ -11,14 +11,25 @@
         <h1>Currency Converter</h1>
         <label for="amount">Enter amount: </label>
         <input type="number" id="amount" name="amount" placeholder="Enter amount" required>
-        <select name="currency" id="currency" required>
-            <option value="USD">$ - US Dollar</option>
-            <option value="EUR">€ - Euro</option>
-            <option value="CAD">$ - Canadian Dollar</option>
-            <option value="JPY">Japanese Yen</option>
+        
+        <label for="fromCurrency">From: </label>
+        <select name="fromCurrency" id="fromCurrency" required>
+            <option value="USD">USD - US Dollar</option>
+            <option value="EUR">EUR - Euro</option>
+            <option value="CAD">CAD - Canadian Dollar</option>
+            <option value="JPY">JPY - Japanese Yen</option>
         </select>
-        <button onclick="formatCurrency()">Submit</button>
-        <h2>Formatted Output:</h2>
+
+        <label for="toCurrency">To: </label>
+        <select name="toCurrency" id="toCurrency" required>
+            <option value="USD">USD - US Dollar</option>
+            <option value="EUR">EUR - Euro</option>
+            <option value="CAD">CAD - Canadian Dollar</option>
+            <option value="JPY">JPY - Japanese Yen</option>
+        </select>
+
+        <button onclick="convertCurrency()">Submit</button>
+        <h2>Converted Amount:</h2>
         <p id="output"></p>
     </main>
     <script src="logic.js"></script>
