@@ -9,7 +9,7 @@ async function convertCurrency() {
     }
 
     try {
-        const apiKey = 'YOUR_API_KEY'; // Replace with your actual API key
+        const apiKey = 'fca_live_upPB987lS2MSKbXgTMpxdUVWoWX2s6cdfSAuA2pl'; // Replace with your actual API key
         const response = await fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/latest/${fromCurrency}`);
         const data = await response.json();
 
