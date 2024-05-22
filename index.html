@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <main>
-        <h1>Currency converter</h1>
+        <h1>Currency Converter</h1>
         <label for="amount">Enter amount: </label>
         <input type="number" id="amount" name="amount" placeholder="Enter amount" required>
         <select name="currency" id="currency" required>
@@ -20,32 +21,6 @@
         <h2>Formatted Output:</h2>
         <p id="output"></p>
     </main>
-
-    <script>
-        function formatCurrency(){
-            const amount = document.getElementById('amount').value;
-            const currency = document.getElementsByName('currency').value;
-            let formattedAmount;
-
-            if (amount === ''){
-                alert('Please enter an amount');
-                return;
-            }
-            switch(currency){
-                case 'USD':
-                    formattedAmount = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(amount);
-                case 'EUR':
-                    formattedAmount = new Intl.NumberFormat('de-DE', {style: 'currency', currency: 'EUR'}).format(amount);
-                case 'CAD':
-                    formattedAmount = new Intl.NumberFormat('en-CA', {style: 'currency', currency: 'CAD'}).format(amount);
-                case 'JPY':
-                    formattedAmount = new Intl.NumberFormat('en-JP', {style: 'currency', currency: 'JPY'}).format(amount);
-                break;
-                default:
-                    formattedAmount = amount;
-            }
-            document.getElementById('output').textContent = formattedAmount;
-        }
-    </script>
+    <script src="logic.js"></script>
 </body>
 </html>
